@@ -1,24 +1,60 @@
+
 package com.example.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    int stevec = 0;
+    TextView prikaz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        prikaz = findViewById(R.id.textView);
+
+        stevec = getIntent().getIntExtra("stevec", 0);
+
+        if (savedInstanceState != null) {
+            stevec = savedInstanceState.getInt("stevec");
+        }
+
+        prikaz.setText("" + stevec);
+
+        findViewById(R.id.count).setOnClickListener(v -> {
+            stevec++;
+            prikaz.setText("" + stevec);
         });
+
+        findViewById(R.id.b_activity2).setOnClickListener(v -> {
+            Intent intent = new Intent(this, HelloActivity.class);
+            intent.putExtra("stevec", stevec);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.b_activity3).setOnClickListener(v -> {
+            Intent intent = new Intent(this, ThirdActivity.class);
+            intent.putExtra("stevec", stevec);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        stevec = intent.getIntExtra("stevec", stevec);
+        prikaz.setText("" + stevec);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("stevec", stevec);
+        super.onSaveInstanceState(outState);
     }
 }
