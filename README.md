@@ -85,6 +85,13 @@ int stevec = getIntent().getIntExtra("stevec", 0);
 
 Swipe gestures are handled by a custom `OnSwipeTouchListener` class using Android's `GestureDetector`.
 
+## Screenshots
+
+<img width="235" height="488" alt="Posnetek zaslona 2026-11-09 092555" src="https://github.com/user-attachments/assets/6a0ad032-8d11-4733-8be6-a51a37c5dbe4" /> 
+<img width="236" height="487" alt="Posnetek zaslona 2026-11-09 092543" src="https://github.com/user-attachments/assets/ff6ff3b8-330a-491c-a27a-a3c43b4b0900" />
+<img width="238" height="487" alt="Posnetek zaslona 2026-11-09 092534" src="https://github.com/user-attachments/assets/beb8e11f-fd74-4e7a-b8b7-11f174ecb106" />
+
+
 ## Author
 
 **Tristan Čebron**
